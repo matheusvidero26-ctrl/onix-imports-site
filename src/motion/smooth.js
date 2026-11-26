@@ -11,7 +11,7 @@ export function criarScroll() {
   if (REDUZIDO) return null;
   // no toque a rolagem é a nativa (sem syncTouch): o script nunca briga com o dedo nem com a inércia do iOS.
   // O teto de velocidade do guia (src/motion/guia.js) vale só para a roda.
-  const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1, smoothWheel: true, syncTouch: false });
+  const lenis = new Lenis({ lerp: 0.16, wheelMultiplier: 1.15, smoothWheel: true, syncTouch: false });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);

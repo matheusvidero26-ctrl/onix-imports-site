@@ -1,7 +1,7 @@
 // Fotos: cada [data-foto="pasta/nome"] recebe /img/pasta/nome.webp como fundo, carregado só perto da tela.
 // FOTOS lista as que já existem; as outras ficam no cinza do lugar (secoes.css).
 const FOTOS = new Set([
-  ...[1, 2, 3, 4, 5, 6].map((n) => `trabalhos/0${n}`),
+  ...[1, 2, 3, 4, 5, 6, 7, 8].map((n) => `trabalhos/0${n}`), // fotos reais da Onix, placas escondidas
   'estudio/01',
 ]);
 

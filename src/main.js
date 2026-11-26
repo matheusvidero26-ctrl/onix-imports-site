@@ -27,7 +27,8 @@ history.scrollRestoration = 'manual';
 
 async function iniciar() {
   const lenis = criarScroll();
-  criarGuia({ lenis });
+  // Onix: sem o teto de velocidade da roda (guia.js), para a página responder na hora ao scroll
+  // criarGuia({ lenis });
   scrollbar({ lenis });
   fotos();
   duvidas();

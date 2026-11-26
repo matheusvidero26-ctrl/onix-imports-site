@@ -51,3 +51,16 @@ No celular, na mesma rede Wi-Fi: `npm run dev -- --host`.
 O crédito do modelo 3D (Aston Martin DB11, CC-BY 4.0) fica no rodapé porque a licença exige.
 
 O `CLAUDE.md` é o guia técnico do template, com a arquitetura, as regras de celular e como personalizar.
+
+## Rolagem
+
+- O teto de velocidade da roda (`src/motion/guia.js`) está desligado no `src/main.js`, para a página responder na hora.
+- O Lenis está mais rápido: `lerp` 0,16 e `wheelMultiplier` 1,15, em `src/motion/smooth.js`.
+- A cena presa ficou mais curta: 520svh no computador (era 780) e 380svh no celular (era 500), em `src/sections/cena.css`.
+- O trilho dos trabalhos caiu de 340svh para 260svh.
+
+## Fotos reais
+
+- `public/img/trabalhos/01` a `08`: quatro carros em antes e depois (Leapmotor C10, Jeep Commander, Jeep branco e Omoda 7), com as placas escondidas.
+- `public/img/estudio/01`: o Leapmotor C10 pronto dentro da oficina.
+- Os WebP já vêm prontos. Saíram do `fonte/fotos.mjs` as fotos de banco dessas vagas, então o `npm run fotos` não sobrescreve as fotos reais.

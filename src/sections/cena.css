@@ -1,5 +1,5 @@
 /* Cena presa: hero → passagem → mapa. A altura da seção é o comprimento da rolagem; a .cena__fixa fica presa. */
-.cena { position: relative; z-index: 1; height: 780svh; }
+.cena { position: relative; z-index: 1; height: 520svh; } /* Onix: cena mais curta (era 780svh) */
 .cena__fixa { position: sticky; top: 0; height: 100svh; overflow: hidden; background: var(--azul); }
 
 /* ---------- abertura: tela escura que a faixa diagonal descobre ---------- */
@@ -64,7 +64,7 @@ html:not(.js) .abertura, .abertura.is-fim { display: none; }
 .mapa__fio circle { fill: var(--azul); opacity: 0; }
 
 @media (max-width: 1023px), (max-aspect-ratio: 4/5) {
-  .cena { height: 500svh; } /* pin mais curto no celular: as mesmas etapas, menos rolagem */
+  .cena { height: 380svh; } /* pin mais curto no celular: as mesmas etapas, menos rolagem */
   .hero__marca { top: calc(118 * var(--u)); font-size: calc(96 * var(--u)); }
   .hero__vaga { top: calc(372 * var(--u)); width: calc(176 * var(--u)); height: calc(380 * var(--u)); }
   .hero__cupula { top: calc(540 * var(--u)); width: calc(1000 * var(--u)); margin-left: calc(-500 * var(--u)); }

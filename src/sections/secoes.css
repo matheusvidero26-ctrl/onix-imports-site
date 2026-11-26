@@ -2,7 +2,7 @@
 [data-foto] { background: #23252b center / cover no-repeat; }
 
 /* ---------- trabalhos: cartas passando na frente da palavra gigante (lateral, presa à rolagem) ---------- */
-.trabalhos { height: 340svh; background: var(--azul); }
+.trabalhos { height: 260svh; background: var(--azul); }
 .trabalhos__fixa { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; align-items: center; }
 .trabalhos__palavra {
   position: absolute; left: 0; right: 0; top: 50%; translate: 0 -50%; text-align: center; color: var(--preto);
@@ -142,8 +142,11 @@
 }
 
 /* Onix: polaroide da avaliação sem foto de banco, com o símbolo da marca */
-.polaroide__foto--marca { background: var(--preto); display: grid; place-items: center; }
-.polaroide__foto--marca svg { width: 42%; height: auto; }
+.polaroide__foto--marca { aspect-ratio: 2 / 1; background: var(--preto); color: var(--branco); display: grid; place-items: center; align-content: center; gap: calc(4 * var(--su)); }
+.polaroide__foto--laranja { background: var(--azul); color: var(--preto); }
+.polaroide__foto--verde { background: var(--verde); color: var(--preto); }
+.polaroide__foto--marca span { font-size: calc(46 * var(--su)); line-height: 1; font-weight: 900; }
+.polaroide__foto--marca i { font-style: normal; font-size: calc(13 * var(--su)); letter-spacing: 0.12em; }
 
 /* Onix: as linhas laranja e verde da identidade */
 .rodape { position: relative; }

@@ -21,14 +21,6 @@ const TRABALHO = [720, 900]; // cartas do trilho "Entregues", 4:5
 const PAREDE = [640, 480]; // polaroides das avaliações, 4:3
 
 const FOTOS = [
-  { vaga: 'trabalhos/01', tamanho: TRABALHO, foco: [0.5, 0.5], cdn: 'https://images.unsplash.com/photo-1756990683708-afd38ed20f1f', pagina: 'https://unsplash.com/photos/a-white-sports-car-with-detailed-rims-o6XyyJ9rOXE' },
-  { vaga: 'trabalhos/02', tamanho: TRABALHO, foco: [0.5, 0.5], cdn: 'https://images.unsplash.com/photo-1676288176903-a68732722cce', pagina: 'https://unsplash.com/photos/a-black-car-is-parked-in-a-garage-afnQQfeMjUs' },
-  { vaga: 'trabalhos/03', tamanho: TRABALHO, foco: [0.5, 0.5], cdn: 'https://images.unsplash.com/photo-1629934844513-df3e988a0157', pagina: 'https://unsplash.com/photos/purple-porsche-911-parked-in-front-of-white-building-SOZsVnwgvIs' },
-  { vaga: 'trabalhos/04', tamanho: TRABALHO, foco: [0.5, 0.5], cdn: 'https://images.unsplash.com/photo-1564758317487-576ac9266e63', pagina: 'https://unsplash.com/photos/silver-coupe-parked-near-wall-okfGOQAfjt4' },
-  { vaga: 'trabalhos/05', tamanho: TRABALHO, foco: [0.5, 1], cdn: 'https://images.unsplash.com/photo-1623006772851-a8bf2c47d304', pagina: 'https://unsplash.com/photos/blue-bmw-m-3-coupe-7RzPuV3-xyI' },
-  { vaga: 'trabalhos/06', tamanho: TRABALHO, foco: [0.5, 0.5], cdn: 'https://images.unsplash.com/photo-1642002947561-2abeae21c503', pagina: 'https://unsplash.com/photos/a-close-up-of-a-cars-tail-light-7uXyTJ4HBDQ' },
-  // o estúdio corta a faixa da esquerda (resto de grafismo da loja da foto)
-  { vaga: 'estudio/01', tamanho: [1760, 990], foco: [1, 0.5], zoom: 2000 / 1760, qualidade: 74, cdn: 'https://images.pexels.com/photos/3849554/pexels-photo-3849554.jpeg', pagina: 'https://www.pexels.com/photo/black-bmw-m-3-coupe-3849554/' },
   { vaga: 'parede/01', tamanho: PAREDE, foco: [0.5, 0.5], cdn: 'https://images.unsplash.com/photo-1511407401960-0ee203836665', pagina: 'https://unsplash.com/photos/teal-volkswagen-beetle-parked-near-brown-house-xBRQfR2bqNI' },
   { vaga: 'parede/02', tamanho: PAREDE, foco: [1, 0.5], cdn: 'https://images.unsplash.com/photo-1623869675781-80aa31012a5a', pagina: 'https://unsplash.com/photos/white-sedan-on-gray-asphalt-road-during-daytime-73XAgT8DOpo' },
   { vaga: 'parede/03', tamanho: PAREDE, foco: [0.5, 0.65], cdn: 'https://images.unsplash.com/photo-1591738802175-709fedef8288', pagina: 'https://unsplash.com/photos/red-jeep-wrangler-on-road-during-daytime-sBPnD3jzQ7g' },
