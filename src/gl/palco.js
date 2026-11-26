@@ -51,7 +51,8 @@ export async function criarPalco(canvas, { celular = false } = {}) {
 
   // ---------- materiais ----------
   const MC = {
-    limpo: matcap([[0, '#393b42'], [0.5, '#1c1d22'], [0.8, '#0d0e11'], [0.93, '#3d1708'], [1, '#c8461a']]),
+    // Onix: pintura em Verde Ácido, com a borda laranja que assenta o carro no fundo
+    limpo: matcap([[0, '#d6f56a'], [0.5, '#a6cf2c'], [0.8, '#5f7c12'], [0.93, '#26320a'], [1, '#c8461a']]),
     sujo: matcap([[0, '#8d877d'], [0.5, '#6d6860'], [0.82, '#4c4945'], [1, '#3a3836']]),
     vidro: matcap([[0, '#5a6274'], [0.6, '#2b303c'], [0.9, '#191c25'], [1, '#9a3a1a']]),
     escuro: matcap([[0, '#26272c'], [0.6, '#111215'], [1, '#08090b']]),
@@ -60,6 +61,7 @@ export async function criarPalco(canvas, { celular = false } = {}) {
   const uPintura = {
     mcLimpo: { value: MC.limpo }, mcSujo: { value: MC.sujo }, brilho: { value: new THREE.Vector2() },
     varredura: { value: 9 }, poeira: { value: 0 }, resolucao: { value: new THREE.Vector2(1, 1) }, origem: { value: new THREE.Vector3() },
+    giro: { value: 0 }, largura: { value: 2 },
   };
   const pintura = new THREE.ShaderMaterial({
     uniforms: uPintura,
@@ -71,7 +73,7 @@ export async function criarPalco(canvas, { celular = false } = {}) {
         gl_Position = projectionMatrix * mv;
       }`,
     fragmentShader: `
-      uniform sampler2D mcLimpo, mcSujo; uniform vec2 brilho, resolucao; uniform float varredura, poeira; uniform vec3 origem;
+      uniform sampler2D mcLimpo, mcSujo; uniform vec2 brilho, resolucao; uniform float varredura, poeira; uniform vec3 origem; uniform float giro, largura;
       varying vec3 vN; varying vec3 vV; varying vec3 vM;
       float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
       float ruido(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
@@ -83,6 +85,17 @@ export async function criarPalco(canvas, { celular = false } = {}) {
         vec2 uv = vec2(dot(x, n), dot(y, n)) * 0.495 + 0.5;
         vec3 limpo = texture2D(mcLimpo, clamp(uv - brilho * 0.07, 0.01, 0.99)).rgb;
         vec3 sujo = texture2D(mcSujo, uv).rgb;
+        // faixas da marca (como no símbolo): uma banda ônix no meio do carro, com a linha laranja e a verde dentro
+        vec3 pc = vM - origem;
+        float lz = (sin(giro) * pc.x + cos(giro) * pc.z) / largura; // posição na largura do carro, de -0,5 a 0,5
+        float sombra = clamp(dot(limpo, vec3(0.299, 0.587, 0.114)) / 0.78, 0.22, 1.15);
+        float e = 0.006;
+        float banda = 1.0 - smoothstep(0.155 - e, 0.155 + e, abs(lz));
+        float laranja = 1.0 - smoothstep(0.062 - e, 0.062 + e, abs(lz + 0.045));
+        float verde = 1.0 - smoothstep(0.024 - e, 0.024 + e, abs(lz - 0.085));
+        limpo = mix(limpo, vec3(0.045, 0.045, 0.05) * (0.6 + sombra), banda);
+        limpo = mix(limpo, vec3(1.0, 0.353, 0.122) * sombra, laranja);
+        limpo = mix(limpo, vec3(0.714, 0.89, 0.231) * sombra, verde);
         vec2 q = (vM - origem).xz;
         sujo *= 0.78 + 0.34 * (ruido(q * 2.3) * 0.6 + ruido(q * 9.0) * 0.4);
         // a faixa de limpeza: diagonal na tela ("/"), andando da esquerda para a direita
@@ -90,7 +103,7 @@ export async function criarPalco(canvas, { celular = false } = {}) {
         float m = 1.0 - smoothstep(varredura - 0.025, varredura + 0.025, d);
         m = max(m, 1.0 - poeira);
         vec3 cor = mix(sujo, limpo, m);
-        cor += vec3(0.55, 0.62, 1.0) * exp(-pow((d - varredura) / 0.012, 2.0)) * poeira * 0.6;
+        cor += vec3(0.82, 1.0, 0.5) * exp(-pow((d - varredura) / 0.012, 2.0)) * poeira * 0.6;
         gl_FragColor = vec4(cor, 1.0);
         #include <colorspace_fragment>
       }`,
@@ -139,6 +152,7 @@ export async function criarPalco(canvas, { celular = false } = {}) {
   caixa.makeEmpty();
   malhas.forEach((o) => caixa.expandByObject(o));
   const tam = caixa.getSize(new THREE.Vector3());
+  uPintura.largura.value = tam.z;
 
   // interior é só o que fica na cabine (os faróis e o cofre usam os mesmos materiais pretos do painel)
   const cabine = new THREE.Box3();
@@ -209,6 +223,7 @@ export async function criarPalco(canvas, { celular = false } = {}) {
     camera.lookAt(cx, 0, cz);
     camera.updateProjectionMatrix();
     uPintura.origem.value.copy(carro.position);
+    uPintura.giro.value = carro.rotation.y;
   }
 
   // ponto em cima do carro (frações do comprimento e da largura, frente = -0,5) → pixel na tela
@@ -240,6 +255,8 @@ export async function criarPalco(canvas, { celular = false } = {}) {
     vitrificacao: (o) => (['pintura', 'vidro', 'roda'].includes(o.userData.classe) ? branco : o.userData.classe === 'vidroFarol' ? null : preto),
     ppf: (o) => (o.userData.ppf === 'inteira' ? branco : o.userData.ppf === 'corte' ? brancoCorte : /vidro/.test(o.userData.classe) ? null : preto),
     interior: (o) => (o.userData.classe === 'interior' ? branco : null), // raio X: sem nada na frente
+    // Onix: funilaria acende a lataria (carroceria e portas)
+    funilaria: (o) => (/_door_|_body_/.test(o.name) ? branco : /vidro/.test(o.userData.classe) ? null : preto),
     farois: (o) => (/headlight/.test(o.name) ? branco : /vidro/.test(o.userData.classe) ? null : preto),
   };
 

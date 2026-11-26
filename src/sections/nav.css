@@ -41,7 +41,7 @@
 }
 .menu__pe { margin-top: calc(48 * var(--u)); color: var(--cinza-claro); font-size: 15px; }
 .menu__pe a { text-decoration: underline; text-underline-offset: 3px; }
-@media (hover: hover) { .menu__lista a:hover { color: var(--azul); transform: translateX(14px); } }
+@media (hover: hover) { .menu__lista a:hover { color: var(--verde); transform: translateX(14px); } }
 @media (max-width: 1023px), (max-aspect-ratio: 4/5) {
   .menu { padding: 96px var(--borda) 40px; }
   .menu__lista a { font-size: calc(40 * var(--u)); }

@@ -144,3 +144,11 @@
 /* Onix: polaroide da avaliação sem foto de banco, com o símbolo da marca */
 .polaroide__foto--marca { background: var(--preto); display: grid; place-items: center; }
 .polaroide__foto--marca svg { width: 42%; height: auto; }
+
+/* Onix: as linhas laranja e verde da identidade */
+.rodape { position: relative; }
+.rodape::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: var(--faixa-marca); }
+.fecho__card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: linear-gradient(90deg, var(--preto) 0 62%, var(--verde) 62% 100%); pointer-events: none; }
+.estudio__rotulo::before { content: ""; display: block; width: 72px; height: 4px; margin-bottom: 14px; background: var(--faixa-marca); }
+.duvidas__titulo::after { content: ""; display: block; width: 96px; height: 6px; margin-top: calc(18 * var(--su)); background: var(--faixa-marca); }
+.parede__titulo::after { content: ""; display: block; width: 96px; height: 6px; margin-top: calc(18 * var(--su)); background: var(--faixa-marca); }

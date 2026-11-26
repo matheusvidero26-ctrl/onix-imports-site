@@ -4,6 +4,8 @@
   --azul-fundo: #e04a12; /* hover do laranja */
   --azul-texto: #c2410c; /* laranja para texto pequeno sobre branco (contraste AA) */
   --verde: #b6e33b; /* Verde Ácido, detalhe */
+  /* as linhas da marca: 3 partes de laranja para 1 de verde, como no símbolo */
+  --faixa-marca: linear-gradient(90deg, var(--azul) 0 75%, var(--verde) 75% 100%);
   --preto: #0b0b0c;
   --grafite: #141416;
   --papel: #f4f4f2;

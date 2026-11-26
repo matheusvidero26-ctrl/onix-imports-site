@@ -11,7 +11,7 @@ const faixa = (p, a, b) => Math.min(1, Math.max(0, (p - a) / (b - a)));
 const suave = (t) => t * t * (3 - 2 * t);
 
 // marcos da cena (fração da rolagem)
-const M = { heroSai: 0.03, mapaTitulo: 0.31, servico0: 0.36, passoServico: 0.15 };
+const M = { heroSai: 0.03, mapaTitulo: 0.31, servico0: 0.36, passoServico: 0.12 };
 
 export function cena(palco) {
   const sec = document.querySelector('.cena');
