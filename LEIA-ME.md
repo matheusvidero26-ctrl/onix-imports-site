@@ -62,5 +62,5 @@ O `CLAUDE.md` é o guia técnico do template, com a arquitetura, as regras de ce
 ## Fotos reais
 
 - `public/img/trabalhos/01` a `08`: quatro carros em antes e depois (Leapmotor C10, Jeep Commander, Jeep branco e Omoda 7), com as placas escondidas.
-- `public/img/estudio/01`: o Leapmotor C10 pronto dentro da oficina.
+- `public/img/estudio/01`: a fachada da oficina, na seção do endereço.
 - Os WebP já vêm prontos. Saíram do `fonte/fotos.mjs` as fotos de banco dessas vagas, então o `npm run fotos` não sobrescreve as fotos reais.

@@ -25,7 +25,7 @@ export function cena(palco) {
   const e = palco.estado;
 
   const heroTitulo = grupo([document.querySelector('.hero__titulo')]);
-  const heroBotao = pecas([document.querySelector('.hero__texto .botao')]);
+  const heroBotao = pecas([document.querySelector('.hero__texto .botao'), document.querySelector('.hero__parceiros')]); // Onix: parceiros entram e saem com o botão
   const mapaTitulo = linhas(tituloMapa);
   gsap.set(tituloMapa, { visibility: 'visible' });
   gsap.set(itens, { autoAlpha: 0 });

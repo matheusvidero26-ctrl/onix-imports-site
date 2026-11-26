@@ -78,3 +78,39 @@ html:not(.js) .abertura, .abertura.is-fim { display: none; }
   .servico p { font-size: 15px; }
   .servico__preco { font-size: 13px; padding: 5px 11px; }
 }
+
+/* ---------- Onix: empresas parceiras no pé do hero (faixa que corre sozinha) ---------- */
+.hero__parceiros { display: grid; justify-items: center; gap: calc(10 * var(--u)); margin-top: calc(6 * var(--u)); }
+.hero__parceiros-rotulo { font-size: calc(11 * var(--u)); font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--verde); }
+.hero__parceiros-janela {
+  width: calc(760 * var(--u)); overflow: hidden; padding: calc(12 * var(--u)) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14); border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+}
+.hero__parceiros-trilho { display: flex; width: max-content; animation: parceiros 24s linear infinite; }
+.hero__parceiros-lista { display: flex; align-items: center; }
+.hero__parceiros-lista li {
+  display: flex; align-items: center; gap: calc(36 * var(--u)); padding-right: calc(36 * var(--u));
+  font-stretch: var(--larga); font-weight: 850; text-transform: uppercase; letter-spacing: 0.12em;
+  font-size: calc(17 * var(--u)); color: rgba(244, 244, 242, 0.92); white-space: nowrap;
+}
+/* separador: o octógono da marca em laranja */
+.hero__parceiros-lista li::after {
+  content: ""; width: calc(10 * var(--u)); height: calc(10 * var(--u)); background: var(--azul);
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+}
+.hero__parceiros-lista li:nth-child(even)::after { background: var(--verde); }
+@keyframes parceiros { to { transform: translateX(-50%); } }
+@media (hover: hover) { .hero__parceiros-janela:hover .hero__parceiros-trilho { animation-play-state: paused; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero__parceiros-trilho { animation: none; width: auto; justify-content: center; }
+  .hero__parceiros-lista[aria-hidden] { display: none; }
+  .hero__parceiros-lista { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
+}
+@media (max-width: 1023px), (max-aspect-ratio: 4/5) {
+  .hero__parceiros { gap: calc(8 * var(--u)); margin-top: 0; }
+  .hero__parceiros-janela { width: calc(350 * var(--u)); padding: calc(10 * var(--u)) 0; }
+  .hero__parceiros-lista li { font-size: calc(13 * var(--u)); gap: calc(22 * var(--u)); padding-right: calc(22 * var(--u)); }
+  .hero__parceiros-rotulo { font-size: calc(10 * var(--u)); }
+}
