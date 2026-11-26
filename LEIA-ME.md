@@ -21,9 +21,12 @@ No celular, na mesma rede Wi-Fi: `npm run dev -- --host`.
   - Preto Ônix `#0b0b0c`.
   - Gelo `#f4f4f2` no papel.
   - Verde Ácido `#b6e33b` na faixa da abertura e no hover do rodapé.
-  - O carro 3D e o desenho técnico acendem em laranja.
+  - O carro 3D é verde (Verde Ácido), com uma banda ônix no meio do capô e do teto e as linhas laranja e verde do símbolo dentro dela. A pintura e as faixas ficam no shader `pintura` de `src/gl/palco.js` (`MC.limpo` e o bloco "faixas da marca").
+  - No desenho técnico, as áreas dos serviços acendem em laranja.
+  - As linhas laranja e verde também aparecem no topo do rodapé, embaixo do card do fecho e sob os títulos da oficina, das avaliações e das dúvidas. A pílula "sob orçamento" ficou verde.
   - Sobre o laranja, o texto pequeno fica preto, para ter contraste.
-- Quatro serviços no mapa, cada um com um marco a cada 15% da cena:
+- Cinco serviços no mapa, cada um com um marco a cada 12% da cena:
+  - Funilaria (área nova `funilaria` em `REGRAS`, no `palco.js`: acende carroceria e portas)
   - Pintura completa
   - Retoques e reparos
   - Polimento e acabamento
