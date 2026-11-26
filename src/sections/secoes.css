@@ -1,0 +1,146 @@
+/* foto que ainda não chegou: um cinza no lugar, na mesma proporção */
+[data-foto] { background: #23252b center / cover no-repeat; }
+
+/* ---------- trabalhos: cartas passando na frente da palavra gigante (lateral, presa à rolagem) ---------- */
+.trabalhos { height: 340svh; background: var(--azul); }
+.trabalhos__fixa { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; align-items: center; }
+.trabalhos__palavra {
+  position: absolute; left: 0; right: 0; top: 50%; translate: 0 -50%; text-align: center; color: var(--preto);
+  font-size: calc(100vw / 8.1); line-height: 0.8; font-weight: 900; white-space: nowrap; pointer-events: none;
+}
+.trabalhos__titulo { color: var(--preto);
+  position: absolute; left: var(--borda); top: calc(110 * var(--u)); font-size: calc(38 * var(--u)); line-height: 1;
+  font-weight: 900; color: var(--branco); z-index: 2;
+}
+.trabalhos__trilho {
+  position: relative; flex: none; display: flex; align-items: center; gap: calc(56 * var(--u)); margin-top: calc(90 * var(--u));
+  padding: 0 calc(120 * var(--u)) 0 100vw; will-change: transform;
+}
+.carta { flex: none; width: calc(270 * var(--u)); transform: rotate(var(--r, -4deg)) translateY(var(--dy, 0)); }
+.carta:nth-child(2n) { --r: 3deg; --dy: calc(36 * var(--u)); }
+.carta:nth-child(3n) { --r: -2deg; --dy: calc(-24 * var(--u)); }
+.carta figure { background: var(--branco); color: var(--tinta); padding: calc(12 * var(--u)) calc(12 * var(--u)) calc(16 * var(--u)); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.55); }
+.carta__foto { aspect-ratio: 4 / 5; }
+.carta figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: calc(12 * var(--u)); font-size: calc(15 * var(--u)); line-height: 1.2; }
+.carta figcaption b { font-weight: 800; }
+.carta figcaption span { color: var(--cinza); text-align: right; }
+.trabalhos__mais { position: absolute; left: var(--borda); bottom: calc(44 * var(--u)); z-index: 2; }
+
+/* ---------- o estúdio: uma foto de ponta a ponta, legenda no pé esquerdo ---------- */
+.estudio { height: 100svh; min-height: 560px; background: var(--preto); overflow: hidden; }
+.estudio__foto { position: absolute; inset: 0; transform: scale(1.08); }
+.estudio::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(6, 6, 7, 0.86)); pointer-events: none; }
+.estudio__legenda {
+  position: absolute; left: var(--borda); bottom: calc(56 * var(--su)); z-index: 2; display: grid; gap: calc(14 * var(--su));
+  max-width: calc(820 * var(--su));
+}
+.estudio__rotulo { font-size: var(--s-pequeno); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cinza-claro); }
+.estudio__titulo { font-size: var(--s-h2); line-height: 0.98; font-weight: 900; }
+.estudio__texto { font-size: var(--s-corpo); color: rgba(255, 255, 255, 0.82); max-width: 44ch; }
+
+/* ---------- avaliações: polaroides soltas que dá para arrastar ---------- */
+.parede { background: var(--preto); padding: var(--s-folga) 0; overflow: hidden; }
+.parede__topo { width: var(--largura); margin: 0 auto; display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+.parede__titulo { font-size: var(--s-h2); line-height: 0.98; font-weight: 900; flex: 1; }
+.parede__nota { font-size: var(--s-pequeno); font-weight: 700; letter-spacing: 0.04em; color: var(--cinza-claro); white-space: nowrap; }
+.parede__mural { position: relative; width: var(--largura); height: calc(650 * var(--su)); margin: var(--s-titulo-conteudo) auto 0; touch-action: pan-y; }
+.polaroide {
+  position: absolute; left: var(--x); top: var(--y); width: calc(214 * var(--su)); padding: calc(12 * var(--su)) calc(12 * var(--su)) calc(18 * var(--su));
+  background: var(--branco); color: var(--tinta); box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.7);
+  rotate: var(--r); cursor: grab; user-select: none; -webkit-user-select: none; touch-action: pan-y;
+  transition: box-shadow 0.3s var(--curva);
+}
+.polaroide.is-pegando { cursor: grabbing; box-shadow: 0 40px 70px -26px rgba(0, 0, 0, 0.85); }
+.polaroide__foto { aspect-ratio: 4 / 3; pointer-events: none; }
+.polaroide p { margin-top: calc(12 * var(--su)); font-size: calc(15 * var(--su)); line-height: 1.35; }
+.polaroide b { display: block; margin-top: calc(10 * var(--su)); font-size: calc(13 * var(--su)); font-weight: 800; color: var(--azul-texto); }
+@media (hover: hover) { .polaroide:hover { box-shadow: 0 34px 64px -26px rgba(0, 0, 0, 0.8); } }
+.parede__dica { width: var(--largura); margin: calc(20 * var(--su)) auto 0; font-size: var(--s-pequeno); color: var(--cinza-claro); }
+
+/* ---------- dúvidas: caixas; a aberta vira bloco azul ---------- */
+.duvidas {
+  background: var(--papel); color: var(--tinta); padding: var(--s-folga) 0;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: calc(48 * var(--su));
+  width: 100%; padding-left: max(var(--borda), (100vw - 1200px) / 2); padding-right: max(var(--borda), (100vw - 1200px) / 2);
+}
+.duvidas__titulo { font-size: var(--s-h2); line-height: 1; font-weight: 900; }
+.duvidas__lista { display: grid; gap: calc(10 * var(--su)); }
+.duvida { border: 1.5px solid var(--tinta); border-radius: calc(14 * var(--su)); overflow: hidden; transition: background-color 0.35s var(--curva), color 0.35s var(--curva), border-color 0.35s; }
+.duvida summary {
+  list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  padding: calc(20 * var(--su)) calc(24 * var(--su)); font-size: var(--s-h3); font-weight: 750; line-height: 1.2;
+}
+.duvida summary::-webkit-details-marker { display: none; }
+.duvida summary i { position: relative; width: 18px; height: 18px; flex: none; }
+.duvida summary i::before, .duvida summary i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: currentColor; transition: transform 0.4s var(--curva); }
+.duvida summary i::after { transform: rotate(90deg); }
+.duvida[open] summary i::after { transform: rotate(0deg); }
+.duvida__resposta { padding: 0 calc(24 * var(--su)) calc(24 * var(--su)); font-size: var(--s-corpo); max-width: 60ch; overflow: hidden; }
+.duvida[open] { background: var(--azul); color: var(--preto); border-color: var(--azul); }
+@media (hover: hover) { .duvida:not([open]) summary:hover { background: rgba(16, 19, 28, 0.06); } }
+.duvida summary:focus-visible { outline-offset: -6px; }
+
+/* ---------- fecho: card azul com o carro parado no meio ---------- */
+.fecho { position: relative; z-index: 2; background: var(--preto); padding: calc(16 * var(--u)); height: 100svh; min-height: 620px; }
+.fecho__card {
+  position: relative; height: 100%; border-radius: calc(28 * var(--u)); background: var(--azul); overflow: hidden;
+  display: grid; grid-template-rows: auto 1fr auto; justify-items: center; padding: calc(84 * var(--u)) var(--borda) calc(48 * var(--u));
+}
+.fecho__card { color: var(--preto); }
+.fecho__titulo { font-size: calc(78 * var(--u)); line-height: 0.95; font-weight: 900; text-align: center; max-width: 17ch; }
+.fecho__titulo span { position: relative; display: inline-block; }
+.fecho__titulo b { font-weight: inherit; }
+.fecho__bloco { position: absolute; inset: 0.06em -0.05em 0.02em; background: var(--preto); }
+.fecho__vaga { width: calc(640 * var(--u)); height: 100%; max-height: calc(290 * var(--u)); align-self: center; }
+.fecho__acoes { display: grid; justify-items: center; gap: 12px; }
+.fecho__acoes p { font-size: 14px; color: rgba(11, 11, 12, 0.85); }
+
+/* ---------- rodapé: grade preta e o nome gigante cortado pela borda de baixo ---------- */
+.rodape { background: var(--preto); color: var(--branco); padding-top: calc(96 * var(--su)); overflow: hidden; }
+.rodape__grade { width: var(--largura); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: calc(40 * var(--su)); font-size: 15px; }
+.rodape__grade h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cinza-claro); margin-bottom: 14px; }
+.rodape__grade li + li, .rodape__grade p + p { margin-top: 8px; }
+.rodape__grade a { transition: color var(--rapido) var(--curva); }
+@media (hover: hover) { .rodape__grade a:hover { color: var(--verde); } }
+.rodape__marca p:first-child { font-size: 26px; margin-bottom: 12px; }
+.rodape__marca p + p { color: var(--cinza-claro); max-width: 30ch; }
+.rodape__fim {
+  width: var(--largura); margin: calc(64 * var(--su)) auto 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex; justify-content: space-between; gap: 24px; font-size: 12px; color: var(--cinza-claro);
+}
+.rodape__fim a { text-decoration: underline; text-underline-offset: 2px; }
+.rodape__nome { font-size: calc(100vw / 3.95); line-height: 0.74; font-weight: 900; text-align: center; margin: calc(28 * var(--su)) 0 calc(-0.14 * 100vw / 3.95); }
+
+@media (max-width: 1023px), (max-aspect-ratio: 4/5) {
+  /* no celular o trilho é lateral e nativo: o dedo arrasta as cartas, a página não fica presa */
+  .trabalhos { height: auto; padding: calc(96 * var(--su)) 0 calc(72 * var(--su)); overflow: clip; }
+  .trabalhos__fixa { position: relative; height: auto; display: block; overflow: visible; }
+  .trabalhos__titulo { position: relative; left: auto; top: auto; padding: 0 var(--borda); font-size: var(--s-h2); }
+  .trabalhos__palavra { top: 58%; font-size: calc(100vw / 6.2); }
+  .trabalhos__trilho {
+    margin-top: calc(36 * var(--su)); padding: calc(40 * var(--su)) var(--borda) calc(48 * var(--su)); gap: calc(18 * var(--su));
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; will-change: auto;
+  }
+  .trabalhos__trilho::-webkit-scrollbar { display: none; }
+  .carta { width: 74vw; scroll-snap-align: center; }
+  .trabalhos__mais { position: relative; left: auto; bottom: auto; margin: 0 var(--borda); }
+  .estudio__titulo { font-size: calc(31 * var(--su)); } /* "LUZ DE INSPEÇÃO." em uma linha */
+  .parede__topo { display: grid; justify-content: start; }
+  .parede__mural { height: calc(1090 * var(--su)); }
+  .polaroide { width: calc(166 * var(--su)); }
+  .polaroide:nth-child(odd) { --x: 0% !important; }
+  .polaroide:nth-child(even) { --x: 52% !important; }
+  .polaroide:nth-child(1), .polaroide:nth-child(2) { --y: 0% !important; }
+  .polaroide:nth-child(3), .polaroide:nth-child(4) { --y: 34% !important; }
+  .polaroide:nth-child(5), .polaroide:nth-child(6) { --y: 67% !important; }
+  .duvidas { grid-template-columns: 1fr; gap: calc(28 * var(--su)); }
+  .fecho__titulo { font-size: calc(40 * var(--u)); }
+  .fecho__vaga { width: calc(150 * var(--u)); max-height: calc(330 * var(--u)); }
+  .rodape__grade { grid-template-columns: 1fr 1fr; }
+  .rodape__marca { grid-column: 1 / -1; }
+  .rodape__fim { flex-direction: column; }
+}
+
+/* Onix: polaroide da avaliação sem foto de banco, com o símbolo da marca */
+.polaroide__foto--marca { background: var(--preto); display: grid; place-items: center; }
+.polaroide__foto--marca svg { width: 42%; height: auto; }

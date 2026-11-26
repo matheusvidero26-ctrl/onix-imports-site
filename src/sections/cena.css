@@ -1,0 +1,80 @@
+/* Cena presa: hero → passagem → mapa. A altura da seção é o comprimento da rolagem; a .cena__fixa fica presa. */
+.cena { position: relative; z-index: 1; height: 780svh; }
+.cena__fixa { position: sticky; top: 0; height: 100svh; overflow: hidden; background: var(--azul); }
+
+/* ---------- abertura: tela escura que a faixa diagonal descobre ---------- */
+.abertura { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
+.abertura::before {
+  content: ""; position: absolute; inset: 0; background: var(--preto);
+  clip-path: polygon(var(--a1, -40%) 0, 100% 0, 100% 100%, var(--a2, -60%) 100%);
+}
+.abertura__faixa {
+  position: absolute; inset: 0; background: #b6e33b; /* faixa da abertura em Verde Ácido */
+  clip-path: polygon(var(--f1, -40%) 0, var(--a1, -40%) 0, var(--a2, -60%) 100%, var(--f2, -60%) 100%);
+}
+html:not(.js) .abertura, .abertura.is-fim { display: none; }
+
+/* ---------- hero ---------- */
+.hero { position: absolute; inset: 0; }
+.hero__marca {
+  position: absolute; left: 50%; top: calc(86 * var(--u)); translate: -50% 0;
+  display: flex; font-size: calc(248 * var(--u)); line-height: 0.8; white-space: nowrap; color: var(--branco);
+  font-weight: 900;
+}
+.hero__marca span { display: block; }
+/* onde o carro fica: o palco encaixa o comprimento do carro nesta caixa */
+.hero__vaga {
+  position: absolute; left: 50%; top: calc(370 * var(--u)); width: calc(670 * var(--u)); height: calc(306 * var(--u));
+  transform: translate(-50%, -50%);
+}
+.hero__cupula {
+  position: absolute; left: 50%; top: calc(454 * var(--u)); width: calc(1864 * var(--u)); aspect-ratio: 1;
+  margin-left: calc(-932 * var(--u)); border-radius: 50%; background: var(--preto); transform-origin: 50% 50%;
+  translate: 0 var(--sobe, 0%);
+}
+.hero__texto {
+  position: absolute; left: 0; right: 0; top: calc(560 * var(--u)); display: grid; justify-items: center;
+  gap: calc(24 * var(--u)); text-align: center; padding: 0 var(--borda);
+}
+.hero__titulo { font-size: calc(26 * var(--u)); line-height: 1.12; font-weight: 800; text-wrap: balance; }
+
+/* ---------- mapa de serviços ---------- */
+.mapa { position: absolute; inset: 0; color: var(--tinta); pointer-events: none; }
+.mapa__papel { position: absolute; inset: 0; background: var(--papel); transform: translateY(var(--papel-y, 101%)); }
+.mapa__vaga {
+  position: absolute; left: 50%; top: 54%; width: calc(640 * var(--u)); height: calc(290 * var(--u)); transform: translate(-50%, -50%);
+}
+.mapa__titulo {
+  position: absolute; left: calc(64 * var(--u)); top: calc(118 * var(--u)); font-size: calc(54 * var(--u)); line-height: 0.98;
+  font-weight: 900; visibility: hidden;
+}
+.mapa__lista { position: absolute; inset: 0; }
+.servico {
+  position: absolute; left: 0; top: 0; width: calc(286 * var(--u)); display: grid; gap: calc(10 * var(--u));
+  visibility: hidden; pointer-events: auto;
+}
+.servico__nome { font-size: calc(22 * var(--u)); line-height: 1.05; font-weight: 850; }
+.servico p { font-size: calc(16 * var(--u)); line-height: 1.45; color: #3c4150; }
+.servico__preco {
+  justify-self: start; margin-top: calc(4 * var(--u)); padding: calc(6 * var(--u)) calc(12 * var(--u)); border-radius: 999px;
+  background: var(--azul); color: var(--preto); font-size: calc(14 * var(--u)); font-weight: 700;
+}
+.mapa__fio { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.mapa__fio path { fill: none; stroke: var(--tinta); stroke-width: 1.2; stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+.mapa__fio circle { fill: var(--azul); opacity: 0; }
+
+@media (max-width: 1023px), (max-aspect-ratio: 4/5) {
+  .cena { height: 500svh; } /* pin mais curto no celular: as mesmas etapas, menos rolagem */
+  .hero__marca { top: calc(118 * var(--u)); font-size: calc(96 * var(--u)); }
+  .hero__vaga { top: calc(372 * var(--u)); width: calc(176 * var(--u)); height: calc(380 * var(--u)); }
+  .hero__cupula { top: calc(540 * var(--u)); width: calc(1000 * var(--u)); margin-left: calc(-500 * var(--u)); }
+  .hero__texto { top: calc(612 * var(--u)); gap: calc(20 * var(--u)); }
+  .hero__titulo { font-size: calc(17 * var(--u)); }
+  .hero__titulo br { display: none; }
+  .mapa__vaga { top: 50%; width: calc(190 * var(--u)); height: calc(410 * var(--u)); }
+  .mapa__titulo { left: var(--borda); top: calc(88 * var(--u)); font-size: calc(34 * var(--u)); }
+  .servico { width: auto; left: var(--borda) !important; right: var(--borda); top: auto !important; bottom: calc(28 * var(--u)); gap: 8px; }
+  .servico__nome { font-size: 19px; }
+  .servico p { font-size: 15px; }
+  .servico__preco { font-size: 13px; padding: 5px 11px; }
+}

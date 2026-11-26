@@ -1,0 +1,53 @@
+:root {
+  /* cor */
+  --azul: #ff5a1f; /* Laranja Laca, cor de bloco da Onix */
+  --azul-fundo: #e04a12; /* hover do laranja */
+  --azul-texto: #c2410c; /* laranja para texto pequeno sobre branco (contraste AA) */
+  --verde: #b6e33b; /* Verde Ácido, detalhe */
+  --preto: #0b0b0c;
+  --grafite: #141416;
+  --papel: #f4f4f2;
+  --branco: #ffffff;
+  --tinta: #0b0b0c;
+  --cinza: #5b6170;
+  --cinza-claro: rgba(255, 255, 255, 0.66);
+
+  /* tipo: Archivo variável (largura 62–125). Larga e pesada no nome e nos títulos; normal no texto */
+  --fonte: "Archivo Variable", "Archivo", system-ui, sans-serif;
+  --larga: 125%;
+
+  /* escala de cena (hero, cena presa, fecho, rodapé): 1 px de design em 1456 × 840 */
+  --u: min(100vw / 1456, 100svh / 840);
+  /* escala de site (seções comuns): 1 px de verdade a partir de 1280, só encolhe abaixo (docs/escala.md) */
+  --su: min(1px, 100vw / 1280);
+
+  --s-h2: calc(60 * var(--su));
+  --s-h2-fecho: calc(78 * var(--su));
+  --s-h3: calc(22 * var(--su));
+  --s-corpo: calc(18 * var(--su));
+  --s-pequeno: calc(14 * var(--su));
+  --s-folga: calc(140 * var(--su));
+  --s-titulo-conteudo: calc(48 * var(--su));
+  --borda: calc(32 * var(--su));
+  --largura: min(1200px, calc(100vw - 2 * var(--borda)));
+
+  /* movimento das interações */
+  --curva: cubic-bezier(0.16, 1, 0.3, 1);
+  --rapido: 220ms;
+}
+
+@media (max-width: 1023px), (max-aspect-ratio: 4/5) {
+  :root {
+    --u: min(100vw / 390, 100svh / 844);
+    --su: min(1px, 100vw / 390);
+    --s-h2: calc(36 * var(--su));
+    --s-h2-fecho: calc(42 * var(--su));
+    --s-h3: calc(19 * var(--su));
+    --s-corpo: calc(16 * var(--su));
+    --s-pequeno: calc(13 * var(--su));
+    --s-folga: calc(88 * var(--su));
+    --s-titulo-conteudo: calc(30 * var(--su));
+    --borda: calc(20 * var(--su));
+    --larga: 104%; /* no celular a largura total da Archivo quebra os títulos em mais de duas linhas */
+  }
+}
